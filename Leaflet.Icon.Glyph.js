@@ -91,6 +91,20 @@ L.Icon.Glyph = L.Icon.extend({
 		if (options.bgSize) {
 			div.style.backgroundSize = (options.bgSize.x) + 'px ' + (options.bgSize.y) + 'px';
 		}
+		if (options.bgColor) {
+            var bgColorReference = {h: 205, s: 0.7, v: 0.7};
+            var bgColorHSV = this._rgbToHsv(options.bgColor[0], options.bgColor[1], options.bgColor[2]);
+            var hueRotation = bgColorHSV.h - bgColorReference.h;
+            var saturate = bgColorHSV.s / bgColorReference.s;
+            var brightness = bgColorHSV.v / bgColorReference.v;
+            console.log(bgColorHSV);
+            console.log(hueRotation);
+            console.log(saturate);
+            console.log(brightness);
+			div.style.filter = 'hue-rotate(' + hueRotation + 'deg) brightness(' + brightness + ') saturate(' + saturate + ') ';
+			//div.style.filter = 'hue-rotate(' + hueRotation + 'deg)';
+            div.style['-webkit-filter'] = div.style.filter;
+		}
 
 		if (anchor) {
 			div.style.marginLeft = (-anchor.x) + 'px';
@@ -101,7 +115,31 @@ L.Icon.Glyph = L.Icon.extend({
 			div.style.width  = size.x + 'px';
 			div.style.height = size.y + 'px';
 		}
-	}
+	},
+    
+    _rgbToHsv: function(r, g, b) {
+        if (arguments.length === 1) {
+            g = r.g, b = r.b, r = r.r;
+        }
+        var max = Math.max(r, g, b), min = Math.min(r, g, b),
+            d = max - min,
+            h,
+            s = (max === 0 ? 0 : d / max),
+            v = max / 255;
+
+        switch (max) {
+            case min: h = 0; break;
+            case r: h = (g - b) + d * (g < b ? 6: 0); h /= 6 * d; break;
+            case g: h = (b - r) + d * 2; h /= 6 * d; break;
+            case b: h = (r - g) + d * 4; h /= 6 * d; break;
+        }
+
+        return {
+            h: h * 360,
+            s: s,
+            v: v
+        };
+    }
 });
 
 L.icon.glyph = function (options) {

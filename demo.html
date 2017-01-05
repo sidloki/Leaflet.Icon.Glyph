@@ -164,6 +164,7 @@ You can use any typeface at all (see <a href='https://fontlibrary.org'>https://f
 	<h2><a href='https://fortawesome.github.io/Font-Awesome/'>Font Awesome</a></h2>
 
 	<div class='map' id='fa-map'></div>
+	<div class='map' id='fa-map-colorized'></div>
 	<p>
 	<code><pre>
 &lt;link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -407,6 +408,45 @@ You can use any typeface at all (see <a href='https://fontlibrary.org'>https://f
 
 	}
 
+	function fillMapColorized(iconset, glyphs, green) {
+
+		var myCenter = new L.LatLng(0, 0);
+		var map = new L.Map(iconset + '-map-colorized', {center: myCenter, zoom: 2});
+
+		var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+			maxZoom: 24,
+			maxNativeZoom: 18
+		}).addTo(map);
+
+		L.marker([  0, 30], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 0, 0] }) }).addTo(map);
+		L.marker([ 15, 26], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 128, 0] }) }).addTo(map);
+		L.marker([ 26, 15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 255, 0] }) }).addTo(map);
+		L.marker([ 30,  0], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [128, 255, 0] }) }).addTo(map);
+		L.marker([ 26,-15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 255, 0] }) }).addTo(map);
+		L.marker([ 15,-26], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 255, 128] }) }).addTo(map);
+		L.marker([  0,-30], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 255, 255] }) }).addTo(map);
+		L.marker([-15,-26], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 128, 255] }) }).addTo(map);
+		L.marker([-26,-15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 0, 255] }) }).addTo(map);
+		L.marker([-30,  0], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [128, 0, 255] }) }).addTo(map);
+		L.marker([-26, 15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 0, 255] }) }).addTo(map);
+		L.marker([-15, 26], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 0, 128] }) }).addTo(map);
+        
+		L.marker([  0, 15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [168, 84, 84] }) }).addTo(map);
+		/*L.marker([ 15, 26], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 128, 0] }) }).addTo(map);
+		L.marker([ 26, 15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 255, 0] }) }).addTo(map);
+		L.marker([ 30,  0], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [128, 255, 0] }) }).addTo(map);
+		L.marker([ 26,-15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 255, 0] }) }).addTo(map);
+		L.marker([ 15,-26], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 255, 128] }) }).addTo(map);
+		L.marker([  0,-30], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 255, 255] }) }).addTo(map);
+		L.marker([-15,-26], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 128, 255] }) }).addTo(map);
+		L.marker([-26,-15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [0, 0, 255] }) }).addTo(map);
+		L.marker([-30,  0], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [128, 0, 255] }) }).addTo(map);
+		L.marker([-26, 15], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 0, 255] }) }).addTo(map);
+		L.marker([-15, 26], {icon: L.icon.glyph({ prefix: iconset, glyph: glyphs[8], bgColor: [255, 0, 128] }) }).addTo(map);*/
+
+	}
+
 	// Material Design Icons
 	fillMap('mdi', [
 		'compass', 'directions', 'help-circle', 'cloud', 'clock',
@@ -436,6 +476,15 @@ You can use any typeface at all (see <a href='https://fontlibrary.org'>https://f
 		'flask' , 'cog' , 'info-circle' , 'motorcycle' , 'paper-plane'
 	], true);
 
+
+	// Font Awesome with colors
+	fillMapColorized('fa',[
+		'asterisk' , 'ban' , 'automobile' , 'bars' , 'binoculars' ,
+		'bug' , 'bus' , 'check' , 'circle' , 'check-circle-o' ,
+		'close' , 'cloud' , 'leaf', 'comment' , 'compass' ,
+		'male' , 'female' , 'dashboard' , 'flag' , 'flash' ,
+		'flask' , 'cog' , 'info-circle' , 'motorcycle' , 'paper-plane'
+	], true);
 
 	// Metro-ui Icon Font
 	fillMap('mif',[
